@@ -36,9 +36,19 @@ namespace NS { int a; }
 
 int main()
 {
+	
 	std::cout << "Hello, World!\n";
 	std::cout << "Sizeof User:" << sizeof(User) << ",\nsizeof long:" << sizeof(long long)
-		<< ",\nsizeof int:" << sizeof(short);
+		<< ",\nsizeof int:" << sizeof(short) << "\n";
+	for (char i = int('a'); i <= int('z'); i++)
+	{
+		std::cout << char(i);
+	}
+	std::cout << "\n";
+	for (char i = int('0'); i <= int('9'); i++)
+	{
+		std::cout << "Char: " << i << ", value: " << int(i) << "\n";
+	}
 	system("Pause");
     return 0;
 }
