@@ -39,19 +39,48 @@ void swap2(int& a, int& b) {
 	b = buf;
 }
 
+char str[] = "a shord string";
+
+void f(char c) {}
+void g(char& c) {}
+void h(const char& c) {}
+
+
 int main()
 {
-	int a = 3;
+	// 'a'
+	f('a');
+	//g('a'); ERROR 'a' is constant and char& is not a constant reference
+	h('a');
+	// 49
+	f(49);
+	//g(49); ERROR 49 is constant and char& is not a constant reference
+	h(49);
+	//3300
+	f(3300);
+	//g(3300); ERROR 3300 is constant and char& is not a constant reference
+	h(3300);
+	char c = 'c';
+	f(c);
+	g(c);
+	h(c);
+	unsigned char uc = 'd';
+	f(uc);
+	//g(uc); ERROR
+	h(uc);
+	signed char sc = 'd';
+	f(sc);
+	//g(sc); ERROR
+	h(sc);
+
+	//std::cout<<sizeof(str);
+	/*int a = 3;
 	int b = 10; 
 	std::cout << a << " " << b << "\n";
 	swap1(&a, &b);
 	std::cout << a << " " << b << "\n";
 	swap2(a, b);
-	swap2(a, b);
-	swap2(a, b);
-	swap2(a, b);
-
-	std::cout << a << " " << b << "\n";
+	std::cout << a << " " << b << "\n";*/
 
 	/*std::cout
 		<< constantInt << "\n"
