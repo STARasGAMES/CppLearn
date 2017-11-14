@@ -46,12 +46,32 @@ void g(char& c) {}
 void h(const char& c) {}
 
 
+struct Month {
+	char* name;
+	int countOfDays;
+};
+Month months[] = {
+	{ "Marth", 31 },
+	{ "May", 31 },
+	{ "December", 31 }
+};
 
-
+void writeAllMonths(Month* a, int size) {
+	int i = 0;
+	while (size > i++) {
+		std::cout << (*a++).name << "\n";
+	}
+	/*for (int i = 0; i < size; i++)
+	{
+		std::cout << a[i].name << "\n";
+	}*/
+}
 
 int main()
 {
-	typedef char* arrayOfChar[2];
+	writeAllMonths(months, 3);
+
+	/*typedef char* arrayOfChar[2];
 	arrayOfChar month = { "Martch", "May" };
 	int daysAtMonth[] = { 31, 31 };
 	for (int i = 0; i < 2; i++)
@@ -59,21 +79,14 @@ int main()
 		std::cout << month[i] << " " << daysAtMonth[i] << "\n";
 	}
 
-	struct Month {
-		char* name;
-		int countOfDays;
-	};
-	Month months[] = {
-		{"Marth", 31},
-		{"May", 31},
-		{"December", 31}
-	};
+	
 	Month* pointer = months;
 	for (int i = 0; i < 3; i++)
 	{
 		std::cout << pointer->name << " " << pointer->countOfDays << "\n";
 		++pointer;
-	}
+	}*/
+
 	/* // 'a'
 	f('a');
 	//g('a'); ERROR 'a' is constant and char& is not a constant reference
