@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 #include <complex>
-
+#include <limits>
 
 char ch;
 std::string s;
@@ -34,9 +34,12 @@ enum Beer {
 };
 namespace NS { int a; }
 
+template<typename T> void WriteLimits();
+
+
 int main()
 {
-	
+
 	std::cout << "Hello, World!\n";
 	std::cout << "Sizeof User:" << sizeof(User) << ",\nsizeof long:" << sizeof(long long)
 		<< ",\nsizeof int:" << sizeof(short) << "\n";
@@ -49,7 +52,25 @@ int main()
 	{
 		std::cout << "Char: " << i << ", value: " << int(i) << "\n";
 	}
+	WriteLimits<long long>();
+	WriteLimits<char>();
+	WriteLimits<short>();
+	WriteLimits<int>();
+	WriteLimits<long>();
+	WriteLimits<float>();
+	WriteLimits<double>();
+	WriteLimits<long double>();
+	WriteLimits<unsigned>();
 	system("Pause");
-    return 0;
+	return 0;
 }
+
+
+template<typename T> void WriteLimits() {
+	std::cout << "Type name: " << typeid(T).name()
+		<< ", min: " << std::numeric_limits<T>().min()
+		<< ", max: " << std::numeric_limits<T>().max()
+		<< "\n";
+}
+
 
