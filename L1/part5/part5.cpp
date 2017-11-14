@@ -27,10 +27,33 @@ typedef Pint ArrOfPint[7];
 typedef ArrOfPint* PArrOfPint;
 typedef ArrOfPint ArrOfArrOfPint[8];
 
+void swap1(int* a, int* b) {
+	int buf = *a;
+	*a = *b;
+	*b = buf;
+}
+
+void swap2(int& a, int& b) {
+	int buf = a;
+	a = b;
+	b = buf;
+}
 
 int main()
 {
-	std::cout
+	int a = 3;
+	int b = 10; 
+	std::cout << a << " " << b << "\n";
+	swap1(&a, &b);
+	std::cout << a << " " << b << "\n";
+	swap2(a, b);
+	swap2(a, b);
+	swap2(a, b);
+	swap2(a, b);
+
+	std::cout << a << " " << b << "\n";
+
+	/*std::cout
 		<< constantInt << "\n"
 		<< *pointerToConstantInt << "\n"
 		<< *pointerToIntConstant << "\n"
@@ -40,7 +63,7 @@ int main()
 		<< constantInt << "\n"
 		<< *pointerToConstantInt << "\n"
 		<< *pointerToIntConstant << "\n"
-		;
+		;*/
 	system("Pause");
     return 0;
 }
