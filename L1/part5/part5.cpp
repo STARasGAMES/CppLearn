@@ -18,6 +18,16 @@ const int constantInt2 = 2;
 const int* pointerToConstantInt = &constantInt;
 const int* const pointerToIntConstant = &constantInt;
 
+typedef unsigned char Uchar;
+typedef const Uchar C_Uchar;
+typedef int* Pint;
+typedef char** P_Pchar;
+typedef char* Pchar;
+typedef Pint ArrOfPint[7];
+typedef ArrOfPint* PArrOfPint;
+typedef ArrOfPint ArrOfArrOfPint[8];
+
+
 int main()
 {
 	std::cout
