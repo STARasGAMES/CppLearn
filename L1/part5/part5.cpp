@@ -3,6 +3,10 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <iterator>
+#include <string>
+#include <vector>
+#include <algorithm>
 
 char someChar = '3';
 char arrayOfChar[] = "someshet";
@@ -67,9 +71,32 @@ void writeAllMonths(Month* a, int size) {
 	}*/
 }
 
+void writeString(std::string s) {
+	std::cout << s << " ";
+}
+
+bool isStringEqual(std::string s1, std::string s2) {
+	return s1._Equal(s2);
+}
+
 int main()
 {
-	writeAllMonths(months, 3);
+	std::vector<std::string> vec(10);
+	std::string s;
+	std::cin >> s;
+	while (!s._Equal("Quit")) {
+		vec.push_back(s);
+		std::cin >> s;
+	}
+	std::cout << "\n";
+	std::vector<std::string> vec2(10);
+	std::ostream_iterator<std::string> os(std::cout);
+	std::sort(vec.begin(), vec.end());
+	std::unique_copy(vec.begin(), vec.end(), vec2.begin(), isStringEqual);
+	std::cout << "\n";
+	std::for_each(vec2.begin(), vec2.end(), writeString);
+
+	//writeAllMonths(months, 3);
 
 	/*typedef char* arrayOfChar[2];
 	arrayOfChar month = { "Martch", "May" };
