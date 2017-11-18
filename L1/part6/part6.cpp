@@ -24,15 +24,45 @@ bool strcmp(char* s1, char* s2)
 	return *s1 == *s2;
 }
 
+char* cat(const char* s1, const char* s2)
+{
+	char* res = new char[strlen(s1) + strlen(s2) + 1];
+	char* start = res;
+	while (*(res++) = *s1, *(s1++));
+	res--;
+	while (*(res++) = *s2, *(s2++));
+	return start;
+}
+
+void rev(char* s)
+{
+	char* l = s;
+	char* r = s + strlen(s) - 1;
+	do {
+		char buf = *l;
+		*l = *r;
+		*r = buf;
+	} while (++l < --r);
+}
+
+char* revc(char* s)
+{
+	int len = strlen(s);
+	char* res = new char[len + 1];
+	char* p = res + len;
+	*(p--) = 0;
+	while (*(p--) = *s, *(++s));
+	return res;
+}
+
 int main()
 {
-	char s[] = "";
-	char s2[10];
-	char s3[] = "";
-	std::cout << strlen(s) << "\n";
-	strcpy1(s, s2);
-	std::cout << s2 << "\n";
-	std::cout << (strcmp(s, s3) ? "Equal" : "not Equal") << "\n";
+	char s[] = "str1";
+	char s2[] = "str2";
+	std::cout << "Output 1: '" << cat(s, s2) << "'\n";
+	rev(s);
+	std::cout << "Output 2: '" << s << "'\n";
+	std::cout << "Output 3: '" << revc(s) << "'\n";
 	std::system("Pause");
 	return 0;
 }
