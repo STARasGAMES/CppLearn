@@ -3,31 +3,29 @@
 
 #include "stdafx.h"
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <cstdarg>
 
-
-void write(std::string *names, std::string * ...)
-{
-	va_list a;
-	va_start(a, names);
-	for (;;)
-	{
-		std::string *p = va_arg(a, std::string*);
-		std::cout << p << "\n";
-		if (p == 0) break;
-		std::cout << "Hello, " << (*p) << "!\n";
-	}
-	va_end(a);
-}
 
 int main()
 {
+	std::ifstream myfile;
+	
 	while (std::cin)
 	{
 		std::string s;
 		std::cin >> s;
-		write(&s, &s, &s, &s);
+		if (myfile.is_open())
+			myfile.close();
+		myfile.open(s);
+		if (!myfile.is_open())
+		{
+			std::cout << "Unable to open file '" + s + "'\n";
+			continue;
+		}
+		std::string line;
+		while (std::getline(myfile, line))
+			std::cout << line << '\n';
 	}
 	system("Pause");
     return 0;
