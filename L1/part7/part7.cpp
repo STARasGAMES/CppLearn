@@ -3,31 +3,32 @@
 
 #include "stdafx.h"
 #include <iostream>
-int vint = 10;
-char vchar = 'c';
+#include <string>
+#include <cstdarg>
 
-typedef void(*MY_FUNC)(char *ch, int &v);
 
-void f(char *ch, int &v);
-
-MY_FUNC fuk = &f;
-
-void g(MY_FUNC some) {
-	some(&vchar, vint);
-}
-
-MY_FUNC h(MY_FUNC some)
+void write(std::string *names, std::string * ...)
 {
-	return some;
-}
-
-void f(char *ch, int &v) {
-	std::cout << *ch << " " << v << "\n";
+	va_list a;
+	va_start(a, names);
+	for (;;)
+	{
+		std::string *p = va_arg(a, std::string*);
+		std::cout << p << "\n";
+		if (p == 0) break;
+		std::cout << "Hello, " << (*p) << "!\n";
+	}
+	va_end(a);
 }
 
 int main()
 {
-	g(h(fuk));
+	while (std::cin)
+	{
+		std::string s;
+		std::cin >> s;
+		write(&s, &s, &s, &s);
+	}
 	system("Pause");
     return 0;
 }
