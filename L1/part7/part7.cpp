@@ -6,12 +6,19 @@
 int vint = 10;
 char vchar = 'c';
 
+typedef void(*MY_FUNC)(char *ch, int &v);
+
 void f(char *ch, int &v);
 
-void(*fuk)(char *ch, int &v) = &f;
+MY_FUNC fuk = &f;
 
-void g(void(*some)(char *ch, int &v)) {
+void g(MY_FUNC some) {
 	some(&vchar, vint);
+}
+
+MY_FUNC h(MY_FUNC some)
+{
+	return some;
 }
 
 void f(char *ch, int &v) {
@@ -20,7 +27,7 @@ void f(char *ch, int &v) {
 
 int main()
 {
-	g(fuk);
+	g(h(fuk));
 	system("Pause");
     return 0;
 }
